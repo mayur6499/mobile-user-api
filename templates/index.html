@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mobile User Prediction</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            width: 320px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+        }
+        h2 {
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #0078D7;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #005fa3;
+        }
+        .result {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+<div class="card">
+    <h2>Mobile User Behavior Prediction</h2>
+
+    <form method="POST">
+        <input type="number" step="any" name="app_usage" placeholder="App Usage (hours)" required>
+        <input type="number" step="any" name="battery" placeholder="Battery Drain (%)" required>
+        <input type="number" name="apps" placeholder="No. of Apps Installed" required>
+        <input type="number" step="any" name="data" placeholder="Data Usage (GB)" required>
+        <input type="number" step="any" name="screen" placeholder="Screen On Time (hrs)" required>
+        <input type="number" name="age" placeholder="Age" required>
+        <label>Gender (0 = Female, 1 = Male)</label>
+        <input type="number" name="gender" required>
+        <label>OS (0 = Android, 1 = iOS)</label>
+        <input type="number" name="os" required>
+        <label>Location (0 = Rural, 1 = Urban)</label>
+        <input type="number" name="location" required>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction is not none %}
+        <div class="result">
+            Predicted User Class: {{ prediction }}
+        </div>
+    {% endif %}
+</div>
+</body>
+</html>
