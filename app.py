@@ -1,14 +1,16 @@
+import os
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
-
 from flask import Flask, render_template, request, jsonify
-import joblib
 import numpy as np
+import joblib
 
 app = Flask(__name__)
 
 # Load model
-model = joblib.load("mobile_user_model.pkl")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(BASE_DIR, "models", "mobile_user_model.pkl")
+model = joblib.load(model_path)
 
 @app.route("/", methods=["GET", "POST"])
 
